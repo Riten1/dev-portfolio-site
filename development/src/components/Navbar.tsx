@@ -1,4 +1,10 @@
-import { BriefcaseIcon, HomeIcon } from "@heroicons/react/16/solid";
+import {
+  BriefcaseIcon,
+  ChatBubbleBottomCenterIcon,
+  HomeIcon,
+  StarIcon,
+  UserCircleIcon,
+} from "@heroicons/react/16/solid";
 import React from "react";
 
 export const Navbar = () => {
@@ -16,6 +22,18 @@ export const Navbar = () => {
               <button className="flex items-center">
                 <BriefcaseIcon className="w-4 h-4 mr-1" />
                 Work
+              </button>
+              <button className="flex items-center">
+                <UserCircleIcon className="w-4 h-4 mr-1" />
+                About
+              </button>
+              <button className="flex items-center">
+                <StarIcon className="w-4 h-4 mr-1" />
+                Experience
+              </button>
+              <button className="flex items-center">
+                <ChatBubbleBottomCenterIcon className="w-4 h-4 mr-1" />
+                Contact
               </button>
             </div>
           </div>

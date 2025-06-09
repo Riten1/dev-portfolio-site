@@ -1,7 +1,7 @@
 "use client";
 import { Car, Send } from "lucide-react";
 import React from "react";
-import { CardWrapper } from "../CardWrapper";
+import { CardWrapper } from "../../CardWrapper";
 
 export const ConnectCard = () => {
   return (

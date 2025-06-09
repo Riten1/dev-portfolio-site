@@ -1,7 +1,7 @@
 "use client";
 import { Octokit } from "@octokit/core";
 import React, { use, useEffect, useState } from "react";
-import { CardWrapper } from "../CardWrapper";
+import { CardWrapper } from "../../CardWrapper";
 import { Github } from "lucide-react";
 import { IGithubUser } from "@/@types/github";
 
@@ -32,7 +32,7 @@ export const GithubCard = () => {
         );
       }}
     >
-      <div className="p-4 h-full flex flex-col justify-between">
+      <div className="p-6 h-full flex flex-col justify-between">
         <Github className="w-6 h-6" />
         <div>
           <p className="text-sm font-medium">GitHub</p>
