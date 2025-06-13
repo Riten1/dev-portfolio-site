@@ -34,7 +34,7 @@ export const LocationCard = () => {
   }, []);
   return (
     <CardWrapper
-      className="bg-teal-400 text-white"
+      className="bg-teal-400 text-white w-full"
       onClick={() => {
         window.open(
           `https://www.google.com/maps/place/Pokhara/@28.2296977,83.8742169,26101m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3995937bbf0376ff:0xf6cf823b25802164!8m2!3d28.2095831!4d83.9855674!16zL20vMDQwZHgz?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D`

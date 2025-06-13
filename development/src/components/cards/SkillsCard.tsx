@@ -2,6 +2,7 @@ import React from "react";
 import { CardWrapper } from "../CardWrapper";
 import { Badge } from "../ui/Badge";
 import { ArrowRightCircleIcon } from "@heroicons/react/16/solid";
+import { useModal } from "../ui/AnimatedModal";
 
 export const SkillsCard = () => {
   const skills = [
@@ -20,8 +21,15 @@ export const SkillsCard = () => {
     // "Git",
     // "GitHub",
   ];
+
+  const { setActiveModal } = useModal();
   return (
-    <CardWrapper className="bg-pink-500 p-6 h-full w-full">
+    <CardWrapper
+      className="bg-pink-500 p-6 h-full w-full"
+      onClick={() => {
+        setActiveModal("skills");
+      }}
+    >
       <div className="flex flex-col gap-6">
         <p className="text-lg font-semibold text-white">
           Skills and Technologies

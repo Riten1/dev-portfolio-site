@@ -18,7 +18,6 @@ import { useNavContext } from "@/context/navContext";
 
 export default function Home() {
   const { navName } = useNavContext();
-  console.log(navName);
   const renderHome = () => (
     <>
       <div className="flex flex-col lg:flex-row gap-4">
@@ -119,7 +118,7 @@ export default function Home() {
   return (
     <BackgroundLines className="h-full">
       <div className="flex flex-col justify-between items-center h-full">
-        <div className="overflow-visible flex flex-col gap-4 lg:px-44 pt-28 pb-16 md:px-20 px-4 sm:px-6">
+        <div className=" flex flex-col gap-4 lg:px-44 pt-28 pb-16 md:px-20 px-4 sm:px-6">
           {renderCards()}
         </div>
         <div className="border-t bottom-0 border-gray-100 flex flex-col sm:flex-row items-center justify-center gap-2 py-6 text-center">

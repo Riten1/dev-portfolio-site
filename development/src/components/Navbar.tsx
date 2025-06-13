@@ -13,13 +13,18 @@ import React, { useState } from "react";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { setNavName } = useNavContext();
+  const { navName, setNavName } = useNavContext();
 
   return (
     <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-[90%] md:max-w-fit">
       <div className="bg-white/80 backdrop-blur-md border-0 shadow-lg rounded-lg px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="font-bold text-gray-900 cursor-pointer mr-6">RG</div>
+          <div
+            className="font-bold text-gray-900 cursor-pointer mr-6"
+            onClick={() => setNavName("Home")}
+          >
+            RG
+          </div>
 
           <button
             className="md:hidden text-gray-900"
@@ -34,13 +39,13 @@ export const Navbar = () => {
           </button>
 
           <div className="hidden md:flex space-x-8">
-            <NavButtons setNavName={setNavName} />
+            <NavButtons setNavName={setNavName} navName={navName} />
           </div>
         </div>
 
         {isOpen && (
           <div className="mt-4 flex flex-col space-y-4 md:hidden">
-            <NavButtons setNavName={setNavName} />
+            <NavButtons setNavName={setNavName} navName={navName} />
           </div>
         )}
       </div>
@@ -71,19 +76,32 @@ const navItems = [
   },
 ];
 
-const NavButtons = ({ setNavName }: { setNavName: any }) => (
+const NavButtons = ({
+  setNavName,
+  navName,
+}: {
+  setNavName: any;
+  navName: string;
+}) => (
   <>
     {navItems.map((item) => (
-      <button
-        onClick={() => {
-          setNavName(item.name);
-        }}
-        key={item.name}
-        className="cursor-pointer flex items-center text-gray-800 hover:text-black"
-      >
-        <item.icon className="w-4 h-4 mr-1" />
-        {item.name}
-      </button>
+      <>
+        <div className="relative" key={item.name}>
+          <button
+            onClick={() => {
+              setNavName(item.name);
+            }}
+            key={item.name}
+            className="  cursor-pointer flex items-center text-gray-800 hover:text-black"
+          >
+            <item.icon className="w-4 h-4 mr-1" />
+            {item.name}
+          </button>
+          {item.name === navName && (
+            <div className="absolute -bottom-2  bg-violet-600 h-0.5 w-10 -z-10 " />
+          )}
+        </div>
+      </>
     ))}
   </>
 );

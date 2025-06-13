@@ -53,7 +53,7 @@ export const MusicCard = () => {
   }, [toggleMute, togglePlay]);
 
   return (
-    <CardWrapper className="bg-indigo-500 p-6">
+    <CardWrapper className="bg-indigo-500 p-6 w-full">
       <audio loop ref={audioRef} src="/music.mp3" />
       <div className="text-white h-full flex flex-col justify-between gap-4">
         <div className="flex items-center justify-between">

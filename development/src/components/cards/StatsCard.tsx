@@ -3,7 +3,7 @@ import { CardWrapper } from "../CardWrapper";
 
 export const StatsCard = () => {
   return (
-    <CardWrapper className="bg-gradient-to-br h-full  from-green-400 to-blue-500 lg:w-full w-[420px]">
+    <CardWrapper className="bg-gradient-to-br h-full  from-green-400 to-blue-500 w-full">
       <div className="lg:p-6 p-4 h-full text-white">
         <h3 className="text-base sm:text-lg font-semibold mb-4">Quick Stats</h3>
         <div className="space-y-2">
