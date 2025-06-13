@@ -1,9 +1,15 @@
 import React from "react";
 import { CardWrapper } from "../CardWrapper";
+import { useNavContext } from "@/context/navContext";
 
 export const AvatarCard = () => {
+  const { setNavName } = useNavContext();
   return (
-    <CardWrapper className="w-full sm:w-1/2 p-6 sm:p-8 md:p-12 bg-yellow-400 flex justify-center items-center">
+    
+    <CardWrapper
+      className="w-full sm:w-1/2 p-6 sm:p-8 md:p-12 bg-yellow-400 flex justify-center items-center"
+      onClick={() => setNavName("Contact")}
+    >
       <div className="flex flex-col justify-center items-center gap-2">
         <div className="relative bg-white w-16 h-16 sm:w-20 sm:h-20 flex justify-center items-center rounded-full animate-bounce">
           <p className="text-2xl sm:text-3xl">👨‍💻</p>
