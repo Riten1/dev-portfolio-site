@@ -85,23 +85,21 @@ const NavButtons = ({
 }) => (
   <>
     {navItems.map((item) => (
-      <>
-        <div className="relative" key={item.name}>
-          <button
-            onClick={() => {
-              setNavName(item.name);
-            }}
-            key={item.name}
-            className="  cursor-pointer flex items-center text-gray-800 hover:text-black"
-          >
-            <item.icon className="w-4 h-4 mr-1" />
-            {item.name}
-          </button>
-          {item.name === navName && (
-            <div className="absolute -bottom-2  bg-violet-600 h-0.5 w-10 -z-10 " />
-          )}
-        </div>
-      </>
+      <div className="relative" key={item.name}>
+        <button
+          onClick={() => {
+            setNavName(item.name);
+          }}
+          key={item.name}
+          className="  cursor-pointer flex items-center text-gray-800 hover:text-black"
+        >
+          <item.icon className="w-4 h-4 mr-1" />
+          {item.name}
+        </button>
+        {item.name === navName && (
+          <div className="absolute -bottom-2  bg-violet-600 h-0.5 w-10 -z-10 " />
+        )}
+      </div>
     ))}
   </>
 );
