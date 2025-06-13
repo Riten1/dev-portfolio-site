@@ -38,10 +38,10 @@ export const GithubCard = () => {
           <p className="text-sm font-medium">GitHub</p>
           <p className="text-xs opacity-80">@{githubData?.name}</p>
           <div className="flex gap-2">
-            <p className="text-xs opacity-60">
+            <p className="lg:text-xs opacity-60 text-[10px]">
               {githubData?.followers} followers
             </p>
-            <p className="text-xs opacity-60">
+            <p className="lg:text-xs text-[10px] opacity-60">
               {githubData?.following} following
             </p>
           </div>

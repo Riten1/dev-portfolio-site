@@ -18,7 +18,7 @@ export const ConnectCard = () => {
             e.stopPropagation();
             window.location.href = `mailto: griten186@gmail.com`;
           }}
-          className="mt-6 flex justify-center items-center cursor-pointer w-full px-6 py-2 border border-black bg-transparent text-black dark:border-white relative group transition duration-200"
+          className="mt-6 lg:text-[16px] text-[14px] flex justify-center items-center cursor-pointer w-full lg:px-6 md:px-6 px-2 py-2 border border-black bg-transparent text-black dark:border-white relative group transition duration-200"
         >
           <div className="absolute -bottom-2 -right-2 bg-yellow-300 h-full w-full -z-10 group-hover:bottom-0 group-hover:right-0 transition-all duration-200" />
           <Send className="w-4 h-4 mr-2" />

@@ -19,7 +19,7 @@ const techStacks: string[] = [
 export const EnirmanCard = () => {
   return (
     <CardWrapper
-      className=" h-full bg-white shadow-xl w-full border border-gray-100"
+      className="overflow-y-auto h-full bg-white shadow-xl w-full border border-gray-100"
       onClick={() => window.open("https://app.enirman.com/")}
     >
       <div className="h-1/3 items-center justify-center flex relative">
@@ -33,7 +33,8 @@ export const EnirmanCard = () => {
           Enirman Admin
         </p>
         <p className="text-sm text-gray-500 mb-2">
-          Saas based construction management system for construction companies.
+          A Saas based construction management system for construction
+          companies.
         </p>
         <div>
           <div

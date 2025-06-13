@@ -14,7 +14,7 @@ const techStacks: string[] = [
 export const RollcorCard = () => {
   return (
     <CardWrapper
-      className="h-full bg-white shadow-xl w-full"
+      className="h-full overflow-y-auto  bg-white shadow-xl w-full"
       onClick={() => {
         window.open("https://rollcor.com/");
       }}
@@ -31,9 +31,7 @@ export const RollcorCard = () => {
         </span>
       </div>{" "}
       <div className="p-4 border-t border-gray-100">
-        <p className="text-md text-gray-900 font-semibold mb-2">
-          Rollcor
-        </p>
+        <p className="text-md text-gray-900 font-semibold mb-2">Rollcor</p>
         <p className="text-sm text-gray-500 mb-4">
           A business site for the Rollcor door systems company.
         </p>
