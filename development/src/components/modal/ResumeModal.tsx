@@ -1,17 +1,20 @@
 "use client";
-import { SpecialZoomLevel, Viewer, Worker } from "@react-pdf-viewer/core";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const PDFViewerComponent = dynamic(() => import("../../components/PdfViewer"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center h-full">
+      Loading PDF...
+    </div>
+  ),
+});
 
 export const ResumeModal = () => {
   return (
-    <div className=" custom-scrollbar w-full h-[90vh] overflow-auto">
-      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-        <Viewer
-          enableSmoothScroll={true}
-          defaultScale={SpecialZoomLevel.PageFit}
-          fileUrl={"/RitenGurung_updatedCV.pdf"}
-        />
-      </Worker>
+    <div className="custom-scrollbar w-full h-[90vh] overflow-auto">
+      <PDFViewerComponent />
     </div>
   );
 };
