@@ -80,7 +80,7 @@ const NavButtons = ({
   setNavName,
   navName,
 }: {
-  setNavName: any;
+  setNavName: (name: string) => void;
   navName: string;
 }) => (
   <>

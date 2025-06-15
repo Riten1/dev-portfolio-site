@@ -1,28 +1,49 @@
 "use client";
 import { Octokit } from "@octokit/core";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { CardWrapper } from "../../CardWrapper";
 import { Github } from "lucide-react";
 import { IGithubUser } from "@/@types/github";
 
 export const GithubCard = () => {
-  const octokit: Octokit = new Octokit({
-    auth: process.env.GITHUB_ACCESS_TOKEN,
-  });
+  // Move octokit inside useMemo to prevent recreating on every render
+  const octokit = useMemo(
+    () =>
+      new Octokit({
+        auth: process.env.GITHUB_ACCESS_TOKEN,
+      }),
+    []
+  );
 
-  const [githubData, setGithubData] = useState<IGithubUser>();
+  const [githubData, setGithubData] = useState<IGithubUser | null>(null);
 
   useEffect(() => {
     (async () => {
-      const response = await octokit.request("GET /users/{username}", {
-        username: `${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`,
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
-      });
-      setGithubData(response.data);
+      try {
+        const response = await octokit.request("GET /users/{username}", {
+          username: `${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`,
+          headers: {
+            "X-GitHub-Api-Version": "2022-11-28",
+          },
+        });
+
+        const userData: IGithubUser = {
+          ...response.data,
+          name: response.data.name || response.data.login,
+          created_at: new Date(response.data.created_at),
+          updated_at: new Date(response.data.updated_at),
+          bio: response.data.bio || "",
+          blog: response.data.blog || "",
+          hireable: response.data.hireable || false,
+        } as IGithubUser;
+
+        setGithubData(userData);
+      } catch (error) {
+        console.error("Error fetching GitHub data:", error);
+      }
     })();
-  }, []);
+  }, [octokit]);
+
   return (
     <CardWrapper
       className="bg-gray-800 text-white"

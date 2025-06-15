@@ -3,7 +3,9 @@ import { createContext, useContext, useState } from "react";
 
 const navContext = createContext({
   navName: "Home",
-  setNavName: (name: string) => {},
+  setNavName: (name: string) => {
+    console.log(name);
+  },
 });
 
 export const NavProvider = ({ children }: { children: React.ReactNode }) => {

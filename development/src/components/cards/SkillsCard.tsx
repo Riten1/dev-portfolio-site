@@ -1,7 +1,6 @@
 import React from "react";
 import { CardWrapper } from "../CardWrapper";
 import { Badge } from "../ui/Badge";
-import { ArrowRightCircleIcon } from "@heroicons/react/16/solid";
 import { useModal } from "../ui/AnimatedModal";
 
 export const SkillsCard = () => {

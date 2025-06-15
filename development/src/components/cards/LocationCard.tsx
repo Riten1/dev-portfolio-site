@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { CardWrapper } from "../CardWrapper";
 import axios from "axios";
 import { IWeatherData } from "@/@types/weather";
-import { p } from "motion/react-client";
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 const coordinatesBaseUrl = process.env.NEXT_PUBLIC_COORDINATES_WEATHER_BASE_URL;

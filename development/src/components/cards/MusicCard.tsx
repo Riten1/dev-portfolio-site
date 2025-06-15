@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { CardWrapper } from "../CardWrapper";
 import { Music, Pause, Play, Volume2, VolumeX } from "lucide-react";
-import { audio } from "motion/react-client";
 
 export const MusicCard = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
+  const [, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const togglePlay = () => {
+  // Wrap togglePlay in useCallback to prevent dependency changes
+  const togglePlay = useCallback(() => {
     if (!audioRef.current) return;
 
     if (isPlaying) {
@@ -21,14 +21,16 @@ export const MusicCard = () => {
       audioRef.current.play();
     }
     setIsPlaying(!isPlaying);
-  };
+  }, [isPlaying]);
 
-  const toggleMute = () => {
+  // Wrap toggleMute in useCallback to prevent dependency changes
+  const toggleMute = useCallback(() => {
     if (!audioRef.current) return;
 
     audioRef.current.muted = !isMuted;
     setIsMuted(!isMuted);
-  };
+  }, [isMuted]);
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -36,21 +38,24 @@ export const MusicCard = () => {
   };
 
   useEffect(() => {
+    const audioElement = audioRef.current; // Copy ref to variable for cleanup
+
     const updateTime = () => {
-      setCurrentTime(audioRef.current?.currentTime || 0);
+      setCurrentTime(audioElement?.currentTime || 0);
     };
 
     const setAudioDuration = () => {
-      setDuration(audioRef.current?.duration || 0);
+      setDuration(audioElement?.duration || 0);
     };
 
-    audioRef.current?.addEventListener("timeupdate", updateTime);
-    audioRef.current?.addEventListener("loadedmetadata", setAudioDuration);
+    audioElement?.addEventListener("timeupdate", updateTime);
+    audioElement?.addEventListener("loadedmetadata", setAudioDuration);
+
     return () => {
-      audioRef.current?.removeEventListener("timeupdate", updateTime);
-      audioRef.current?.removeEventListener("loadedmetadata", setAudioDuration);
+      audioElement?.removeEventListener("timeupdate", updateTime);
+      audioElement?.removeEventListener("loadedmetadata", setAudioDuration);
     };
-  }, [toggleMute, togglePlay]);
+  }, []); // Remove dependencies since they're not actually needed
 
   return (
     <CardWrapper className="bg-indigo-500 p-6 w-full">
@@ -82,8 +87,7 @@ export const MusicCard = () => {
             <div
               className="bg-white h-1 rounded-full transition-all duration-300"
               style={{
-                width: `${(currentTime / 194.448028) * 100}%
-                `,
+                width: `${(currentTime / 194.448028) * 100}%`,
               }}
             />
           </div>

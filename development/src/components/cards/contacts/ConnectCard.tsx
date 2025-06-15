@@ -1,5 +1,5 @@
 "use client";
-import { Car, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import React from "react";
 import { CardWrapper } from "../../CardWrapper";
 
@@ -8,7 +8,7 @@ export const ConnectCard = () => {
     <CardWrapper className="bg-red-500 text-white">
       <div className="p-6 h-full flex flex-col justify-between">
         <div>
-          <h3 className="font-semibold mb-2">Let's Connect</h3>
+          <h3 className="font-semibold mb-2">Let&apos;s Connect</h3>
           <p className="text-sm opacity-90 mb-2">Ready to work together?</p>
           <p className="text-xs opacity-80">griten186@gmail.com</p>
           <p className="text-xs opacity-80">+977 9826127253</p>

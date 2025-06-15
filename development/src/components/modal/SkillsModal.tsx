@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ModalBody, useModal } from "../ui/AnimatedModal";
+import { useModal } from "../ui/AnimatedModal";
 
 const frontendSkills = [
   { name: "React.js", percent: 95, color: "bg-cyan-500" },
