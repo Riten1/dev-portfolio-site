@@ -106,6 +106,17 @@ const PDFViewer = () => {
             renderTextLayer={true}
             renderAnnotationLayer={true}
           />
+          <div className="mt-6 text-center">
+            <a
+              href="/RitenGurung_updatedCV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer w-full sm:w-1/2 px-6 py-2 border border-black bg-transparent text-black dark:border-white relative group transition duration-200"
+            >
+              <div className="absolute -bottom-2 -right-2 bg-black h-full w-full -z-10 group-hover:bottom-0 group-hover:right-0 transition-all duration-200" />
+              Download PDF
+            </a>
+          </div>
         </Document>
       </div>
 
