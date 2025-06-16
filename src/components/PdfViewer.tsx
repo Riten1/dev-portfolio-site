@@ -1,20 +1,19 @@
 "use client";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-// Use more reliable CDN
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const PDFViewer = () => {
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [windowWidth, setWindowWidth] = useState<number>(800);
+  const [windowWidth, setWindowWidth] = useState<number>(500);
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -71,7 +70,7 @@ const PDFViewer = () => {
     );
   }
 
-  const pageWidth = Math.min(800, windowWidth - 80);
+  const pageWidth = Math.min(500, windowWidth - 60);
 
   return (
     <div className="flex flex-col items-center w-full h-full p-4">
@@ -111,23 +110,29 @@ const PDFViewer = () => {
       </div>
 
       {numPages && numPages > 1 && (
-        <div className="mt-6 flex items-center gap-4 bg-white p-3 rounded-lg shadow-md border border-gray-200">
+        <div className="flex gap-2  align-middle items-center mt-6">
           <button
             onClick={() => setPageNumber(Math.max(1, pageNumber - 1))}
             disabled={pageNumber <= 1}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-600 transition-colors"
+            className="cursor-pointer w-full sm:w-1/2 px-6 py-2 border border-black bg-transparent text-black dark:border-white relative group transition duration-200"
           >
-            Previous
+            <div className="absolute -bottom-2 -right-2 bg-black h-full w-full -z-10 group-hover:bottom-0 group-hover:right-0 transition-all duration-200" />
+            <span className="relative">
+              <ArrowLeft />
+            </span>
           </button>
-          <span className="font-medium text-gray-700 px-4">
-            Page {pageNumber} of {numPages}
+          <span className="font-semibold text-gray-700 text-xs w-1/2">
+            {pageNumber} of {numPages}
           </span>
           <button
             onClick={() => setPageNumber(Math.min(numPages, pageNumber + 1))}
             disabled={pageNumber >= numPages}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-600 transition-colors"
+            className="cursor-pointer w-full sm:w-1/2 px-6 py-2 border border-black bg-transparent text-black dark:border-white relative group transition duration-200"
           >
-            Next
+            <div className="absolute -bottom-2 -right-2 bg-black h-full w-full -z-10 group-hover:bottom-0 group-hover:right-0 transition-all duration-200" />
+            <span className="relative">
+              <ArrowRight />
+            </span>
           </button>
         </div>
       )}
