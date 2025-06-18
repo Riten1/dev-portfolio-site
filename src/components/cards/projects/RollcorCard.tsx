@@ -14,7 +14,7 @@ const techStacks: string[] = [
 export const RollcorCard = () => {
   return (
     <CardWrapper
-      className="h-full overflow-y-auto  bg-white shadow-xl w-full"
+      className="h-full overflow-y-auto custom-scrollbar  bg-white shadow-xl w-full"
       onClick={() => {
         window.open("https://rollcor.com/");
       }}

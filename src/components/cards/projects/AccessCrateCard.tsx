@@ -14,7 +14,7 @@ const techStacks: string[] = [
 export const AccessCrateCard = () => {
   return (
     <CardWrapper
-      className="h-full bg-white shadow-xl w-full overflow-y-auto "
+      className="h-full bg-white shadow-xl w-full overflow-y-auto custom-scrollbar"
       onClick={() => {
         window.open("https://github.com/Riten1/Access-Crate");
       }}
