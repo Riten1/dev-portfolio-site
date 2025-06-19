@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const isProd = process.env.NODE_ENV === "production";
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig = {
   webpack: (config: any) => {
@@ -8,8 +9,8 @@ const nextConfig = {
     return config;
   },
   output: "export",
-  basePath: isProd ? "/dev-portfolio-site" : "",
-  assetPrefix: isProd ? "/dev-portfolio-site" : "",
+  basePath: isProd && isGitHubPages ? "/dev-portfolio-site" : "",
+  assetPrefix: isProd && isGitHubPages ? "/dev-portfolio-site" : "",
   images: {
     unoptimized: true,
   },
