@@ -13,9 +13,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    appDir: true,
-  },
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
