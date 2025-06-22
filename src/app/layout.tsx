@@ -27,48 +27,46 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <NavProvider>
-            <ModalProvider>
-              <div className="min-h-screen bg-gray-50 relative">
-                <Navbar />
-                {children}
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <NavProvider>
+          <ModalProvider>
+            <div className="min-h-screen bg-gray-50 relative">
+              <Navbar />
+              {children}
 
-                <ModalBody
-                  modalId="resume"
-                  className="max-w-[98vw] max-h-[98vh] w-full h-full"
-                >
-                  <ModalContent className="p-0 overflow-hidden">
-                    <ResumeModal />
-                  </ModalContent>
-                </ModalBody>
+              <ModalBody
+                modalId="resume"
+                className="max-w-[98vw] max-h-[98vh] w-full h-full"
+              >
+                <ModalContent className="p-0 overflow-hidden">
+                  <ResumeModal />
+                </ModalContent>
+              </ModalBody>
 
-                <ModalBody
-                  modalId="skills"
-                  className="max-w-[98vw] max-h-[98vh] w-full h-full bg-pink-500"
-                >
-                  <ModalContent className="p-0 overflow-hidden bg-pink-500 border-pink-500">
-                    <SkillsModal />
-                  </ModalContent>
-                </ModalBody>
+              <ModalBody
+                modalId="skills"
+                className="max-w-[98vw] max-h-[98vh] w-full h-full bg-pink-500"
+              >
+                <ModalContent className="p-0 overflow-hidden bg-pink-500 border-pink-500">
+                  <SkillsModal />
+                </ModalContent>
+              </ModalBody>
 
-                <ModalBody
-                  modalId="experience"
-                  className="max-w-[98vw] max-h-[98vh] w-full h-full bg-orange-500"
-                >
-                  <ModalContent className="p-0 overflow-hidden bg-orange-500 border-orange-500">
-                    <ExperienceModal />
-                  </ModalContent>
-                </ModalBody>
-              </div>
-            </ModalProvider>
-          </NavProvider>
-        </body>
-      </html>
-    </>
+              <ModalBody
+                modalId="experience"
+                className="max-w-[98vw] max-h-[98vh] w-full h-full bg-orange-500"
+              >
+                <ModalContent className="p-0 overflow-hidden bg-orange-500 border-orange-500">
+                  <ExperienceModal />
+                </ModalContent>
+              </ModalBody>
+            </div>
+          </ModalProvider>
+        </NavProvider>
+      </body>
+    </html>
   );
 }

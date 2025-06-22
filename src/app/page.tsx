@@ -15,9 +15,16 @@ import { SkillsCard } from "@/components/cards/SkillsCard";
 import { StatsCard } from "@/components/cards/StatsCard";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { useNavContext } from "@/context/navContext";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const { navName } = useNavContext();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const renderHome = () => (
     <>
       <div className="flex flex-col lg:flex-row gap-4">
@@ -100,7 +107,9 @@ export default function Home() {
   );
 
   const renderCards = () => {
-    switch (navName) {
+    const currentNav = mounted ? navName : "Home";
+
+    switch (currentNav) {
       case "Home":
         return renderHome();
       case "Work":
@@ -115,10 +124,29 @@ export default function Home() {
         return renderHome();
     }
   };
+
+  if (!mounted) {
+    return (
+      <BackgroundLines className="h-full">
+        <div className="flex flex-col justify-between items-center h-full">
+          <div className="flex flex-col gap-4 lg:px-44 pt-28 pb-16 md:px-20 px-4 sm:px-6">
+            {renderHome()}
+          </div>
+          <div className="border-t bottom-0 border-gray-100 flex flex-col sm:flex-row items-center justify-center gap-2 py-6 text-center">
+            <div className="font-bold text-gray-900 cursor-pointer">RG</div>
+            <p className="text-md">
+              © {new Date().getFullYear()} Riten Gurung All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </BackgroundLines>
+    );
+  }
+
   return (
     <BackgroundLines className="h-full">
       <div className="flex flex-col justify-between items-center h-full">
-        <div className=" flex flex-col gap-4 lg:px-44 pt-28 pb-16 md:px-20 px-4 sm:px-6">
+        <div className="flex flex-col gap-4 lg:px-44 pt-28 pb-16 md:px-20 px-4 sm:px-6">
           {renderCards()}
         </div>
         <div className="border-t bottom-0 border-gray-100 flex flex-col sm:flex-row items-center justify-center gap-2 py-6 text-center">

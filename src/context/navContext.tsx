@@ -1,15 +1,16 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
-const navContext = createContext({
-  navName: "Home",
-  setNavName: (name: string) => {
-    console.log(name);
-  },
-});
+interface NavContextType {
+  navName: string;
+  setNavName: (name: string) => void;
+}
 
-export const NavProvider = ({ children }: { children: React.ReactNode }) => {
-  const [navName, setNavName] = useState("Home");
+const navContext = createContext<NavContextType | undefined>(undefined);
+
+export const NavProvider = ({ children }: { children: ReactNode }) => {
+  const [navName, setNavName] = useState<string>("Home");
+
   return (
     <navContext.Provider value={{ navName, setNavName }}>
       {children}
@@ -17,4 +18,15 @@ export const NavProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useNavContext = () => useContext(navContext);
+export const useNavContext = () => {
+  const context = useContext(navContext);
+
+  if (context === undefined) {
+    return {
+      navName: "Home",
+      setNavName: () => {},
+    };
+  }
+
+  return context;
+};
